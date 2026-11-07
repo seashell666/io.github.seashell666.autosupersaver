@@ -1,0 +1,15 @@
+*.iml
+.gradle/
+local.properties
+.idea/
+build/
+captures/
+.externalNativeBuild
+.cxx
+*.apk
+*.aab
+keystore/
+dist/
+
+# 发布辅助文件（快照、zip、提示词），不入库
+发布/
