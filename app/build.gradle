@@ -1,0 +1,61 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+def keystoreFile = file("../keystore/autosupersaver.jks")
+def hasKeystore = keystoreFile.exists()
+
+android {
+    namespace 'io.github.seashell666.autosupersaver'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "io.github.seashell666.autosupersaver"
+        minSdk 29
+        targetSdk 34
+        versionCode 2
+        versionName "1.0.0"
+        resourceConfigurations += ['zh', 'en']
+    }
+
+    signingConfigs {
+        release {
+            if (hasKeystore) {
+                storeFile keystoreFile
+                storePassword "autosupersaver"
+                keyAlias "autosupersaver"
+                keyPassword "autosupersaver"
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            if (hasKeystore) signingConfig signingConfigs.release
+        }
+        release {
+            minifyEnabled false
+            shrinkResources false
+            if (hasKeystore) signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+}
+
+dependencies {
+    compileOnly "io.github.libxposed:api:102.0.0"
+}

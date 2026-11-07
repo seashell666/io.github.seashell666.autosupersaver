@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">自动超级省电</string>
+    <string name="module_desc">电量低于阈值且未充电时，自动进入系统超级省电模式</string>
+</resources>
